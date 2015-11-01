@@ -1,3 +1,10 @@
+  /**
+   * GAMES Tutorials
+   * - How to Program Games Tile Classics in JS for HTML5 Canvas
+   * @TODO : WATCHING : 03 Ball-Brick Grid Collision - 007 Compute Index From Row and Column -- 00min
+   *
+   */
+
 // Main javascript entry point
 // Should handle bootstrapping/starting application
 
@@ -11,29 +18,26 @@
 
 //});
 var canvas, canvasContext;
+
 var ballX = 75;
 var ballY = 75;
 var ballSpeedX = 5;
 var ballSpeedY = 7;
 var speedDillutionFactor = 0.35;
 
+var BRICK_WIDTH = 80;
+var BRICK_HEIGHT = 20;
+var BRICK_GAP = 2;
+var BRICK_COLS = 10;
+var BRICK_ROWS = 14;
+var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 
 var PADDLE_WIDTH = 100;
 var PADDLE_THICKNESS = 10;
 var PADDLE_DIST_FROM_EDGE = 60;
-
 var paddleX = 400;
 
-function updateMousePos(evt) {
-  var rect = canvas.getBoundingClientRect();
-  var root = document.documentElement;
-
-  var mouseX = evt.clientX - rect.left - root.scrollLeft; //fix for handling scroll X
-  //var mouseY = evt.clientY - rect.top - root.scrollTop;//fix for handling scroll Y
-  //Center the paddle cursor
-  paddleX = mouseX - PADDLE_WIDTH / 2;
-
-}
+var mouseX, mouseY;
 
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
@@ -43,11 +47,24 @@ window.onload = function() {
   setInterval(updateAll, 1000 / framesPerSecond);
 
   canvas.addEventListener('mousemove', updateMousePos);
+
+  brickReset(); //DRAWING BRICKS
 };
 
 function updateAll() {
   moveAll();
   drawAll();
+}
+
+function updateMousePos(evt) {
+  var rect = canvas.getBoundingClientRect();
+  var root = document.documentElement;
+
+  mouseX = evt.clientX - rect.left - root.scrollLeft; //fix for handling scroll X
+  mouseY = evt.clientY - rect.top - root.scrollTop; //fix for handling scroll Y
+  //Center the paddle cursor
+  paddleX = mouseX - PADDLE_WIDTH / 2;
+
 }
 
 function ballReset() {
@@ -100,6 +117,8 @@ function moveAll() {
   }
 }
 
+
+
 function drawAll() {
   //canvas
   colorRect(0, 0, canvas.width, canvas.height, 'black'); //clear Screen
@@ -107,7 +126,45 @@ function drawAll() {
 
   //paddle
   colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+
+  //bricks
+  drawBricks();
+
+
+  /**
+   * DEBUGGING
+   * @FIXME : remove debugging utilities
+   *
+   */
+  var mouseBrickCol = Math.floor(mouseX / BRICK_WIDTH);
+  var mouseBrickRow = Math.floor(mouseY / BRICK_HEIGHT);
+  colorText(mouseBrickCol + "," + mouseBrickRow, mouseX, mouseY, 'yellow');
+  /*----------  !DEBUGGING  ----------*/
 }
+
+
+function brickReset() {
+  for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
+    if (Math.random() < 0.5) { //COIN FLIP
+      brickGrid[i] = true;
+    } else {
+      brickGrid[i] = false;
+    } //end of else (random check)
+  } //end of each brick
+
+} //end of brickReset function
+
+function drawBricks() {
+  var arrayIndex;
+  for(var eachRow = 0; eachRow < BRICK_ROWS; eachRow++){
+    for (var eachCol = 0; eachCol < BRICK_COLS; eachCol++) {
+      arrayIndex = BRICK_COLS * eachRow + eachCol;
+      if (brickGrid[arrayIndex] === true) {
+        colorRect(BRICK_WIDTH * eachCol, BRICK_HEIGHT * eachRow, BRICK_WIDTH - BRICK_GAP, BRICK_HEIGHT - BRICK_GAP, 'blue');
+      } //end of if this brick
+    } //end of for each col
+  } //END OF each Row
+} //end of drawBricks function
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
   canvasContext.fillStyle = fillColor;
@@ -119,5 +176,9 @@ function colorCircle(centerX, centerY, radius, fillColor) {
   canvasContext.beginPath();
   canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
   canvasContext.fill();
+}
 
+function colorText(showWords, textX, textY, fillColor) {
+  canvasContext.fillStyle = fillColor;
+  canvasContext.fillText(showWords, textX, textY);
 }

@@ -1,0 +1,25 @@
+//- Custom Configuration
+block config
+  //- Setup site's base URL to match the "baseUrl" key within `package.json`
+  //- Otherwise default to relative pathing
+  - var baseUrl = config.baseUrl || './'
+
+doctype html
+
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+  title Sample
+  meta(name='description', content= 'A new Yeogurt application')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  block stylesheets
+    link(rel='stylesheet', href= baseUrl + 'styles/main.css')
+
+body
+
+  block content
+
+  block scripts
+    script(src= baseUrl + 'scripts/main.js')
+
+</html>

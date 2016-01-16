@@ -1,7 +1,7 @@
 /**
  * Created by kevin on 12/01/16.
- * Watching : Beginner 2d Game Programming [JS] - 5 (States)
- * url : https://www.youtube.com/watch?v=-BKG4UMYwz4&index=5&list=PLX96T4AVTGy5wYIlbZYaFeFG8jnPNakBP
+ * Watching : Beginner 2d Game Programming [JS] - 6 (Handler KeyManager)
+ * url : https://www.youtube.com/watch?v=40aDsPYAeL8&index=6&list=PLX96T4AVTGy5wYIlbZYaFeFG8jnPNakBP
  */
 
 
@@ -11,6 +11,7 @@
 
 requirejs.config({
   "baseUrl":"scripts/",
+   waitSeconds: 5000,
   "paths":{
 
     //librairies
@@ -21,9 +22,11 @@ requirejs.config({
     "Assets":"classes/gfx/Assets",
     "Display":"classes/display/Display",
     "Game":"classes/Game",
+    "GameState":"classes/States/GameState",
     "ImageLoader":"classes/gfx/ImageLoader",
     "Launcher":"classes/Launcher",
-    "SpriteSheet":"classes/gfx/SpriteSheet"
+    "SpriteSheet":"classes/gfx/SpriteSheet",
+    "State":"classes/States/State"
   }
 });
 

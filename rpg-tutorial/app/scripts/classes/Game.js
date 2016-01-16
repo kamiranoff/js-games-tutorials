@@ -1,11 +1,11 @@
 'use strict';
 
-define(['Class', 'Display', 'Assets'], function(Class, Display, Assets) {
+define(['Class', 'Display', 'State', 'GameState'], function(Class, Display, State, GameState) {
 
   var _this;
   var running = false;
   var title, width, height, g, display;
-
+  var gameState, menuState, settingsState;
 
   var Game = Class.extend({
     init: function(_title, _width, _height) {
@@ -19,19 +19,23 @@ define(['Class', 'Display', 'Assets'], function(Class, Display, Assets) {
   function init() {
     display = new Display(title, width, height);
     g = display.getGraphics();
+    gameState = new GameState();
+    State.setState(gameState);
   }
 
-  function tick(deltaTime) {
-
+  function tick(_deltaTime) {
+    if (State.getState() !== null) {
+      State.getState().tick(_deltaTime);
+    }
   }
 
-  console.log(Assets.getAssets("mario"));
-  var idle = Assets.getAssets("mario").idle;
 
   function render() {
 
     g.clearRect(0, 0, width, height);
-    g.myDrawImage(idle,10,15,Assets.getAssets("mario").width,Assets.getAssets("mario").height);
+    if (State.getState() !== null) {
+      State.getState().render(g);
+    }
 
   }
 

@@ -1,0 +1,30 @@
+// Normalize Styles
+@import 'node_modules/normalize.css/normalize';
+// Box sizing partial styles:
+// Apply a natural box layout model to all elements
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #efefef;
+}
+
+ul,
+li {
+  margin:0;
+  padding:0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+.call-to-action{
+  text-align: center;
+}

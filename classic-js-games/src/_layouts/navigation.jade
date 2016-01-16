@@ -1,0 +1,13 @@
+block navigation
+  -var selected = 'Home'; //default
+
+-var menu = { 'Home': '/', 'Bricks Game': '/bricks-game.html', 'Race Game': '/race-game.html' };
+
+  nav.navigation
+    ul
+      each val, key in menu
+        li
+          if selected === key
+            a.selected(href=val, title=key)= key
+          else
+            a(href=val, title=key)= key

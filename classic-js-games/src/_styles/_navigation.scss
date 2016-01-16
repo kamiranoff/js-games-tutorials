@@ -1,0 +1,17 @@
+.navigation{
+  background-color: #012;
+  margin-bottom: 2em;
+  ul,li{
+    display:inline;
+  }
+
+  a{
+    display: inline-block;
+    padding:1em;
+    color:#DDD;
+    &.selected{
+      background-color: #456;
+      color:#efefef;
+    }
+  }
+}

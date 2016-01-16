@@ -1,6 +1,7 @@
 extends _layouts/base
 
+block append navigation
+  -var selected = "home"
 
 block content
-  canvas(id="gameCanvas",width="600",height="400")
-
+  h1.call-to-action Click on a link to play a game

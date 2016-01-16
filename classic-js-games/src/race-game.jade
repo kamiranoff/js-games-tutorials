@@ -1,0 +1,10 @@
+extends _layouts/base
+
+block append navigation
+  -var selected = "Race Game";
+
+block content
+  canvas(id="gameCanvas",width="800",height="600")
+
+block scripts
+  script(src= baseUrl + 'scripts/race-game.js')

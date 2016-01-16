@@ -5,11 +5,11 @@
 // Inspired by base2 and Prototype
 
 //MODIFIED TO INTEGER WITH REQUIREJS.
-
 define(function(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
   // The base Class implementation (does nothing)
+  console.log
   this.Class = function(){};
 
   // Create a new Class that inherits from this class

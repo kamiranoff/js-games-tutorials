@@ -1,7 +1,7 @@
 /**
  * Created by kevin on 12/01/16.
- * Watching : Beginner 2d Game Programming [JS] - 2 (Canvas) - 00:00
- * url : https://www.youtube.com/watch?v=R1cvZE_8y_Q&index=2&list=PLX96T4AVTGy5wYIlbZYaFeFG8jnPNakBP
+ * Watching : Beginner 2d Game Programming [JS] - 5 (States)
+ * url : https://www.youtube.com/watch?v=-BKG4UMYwz4&index=5&list=PLX96T4AVTGy5wYIlbZYaFeFG8jnPNakBP
  */
 
 

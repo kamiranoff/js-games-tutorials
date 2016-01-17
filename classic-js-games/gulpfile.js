@@ -48,6 +48,7 @@ gulp.task('build', [
 gulp.task('serve', [
   'imagemin',
   'copy',
+  'copy:js',
   'jade',
   'sass',
   'browserify',

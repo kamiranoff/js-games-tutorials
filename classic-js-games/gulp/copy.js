@@ -16,4 +16,12 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       .pipe(plugins.changed(dest))
       .pipe(gulp.dest(dest));
   });
+
+  gulp.task('copy:js', function() {
+    return gulp.src([
+        path.join(dirs.source, '_scripts/**/*')
+      ])
+      .pipe(plugins.changed(dest))
+      .pipe(gulp.dest(dest + '/scripts'));
+  });
 };

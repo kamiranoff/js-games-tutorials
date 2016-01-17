@@ -27,6 +27,11 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         '!' + path.join(dirs.source, '**/*.jade')
       ], ['copy']);
 
+      gulp.watch([
+        path.join(dirs.source, '_scripts/**/*.js')
+      ], ['copy:js']);
+
+
       // Images
       gulp.watch([
         path.join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
@@ -35,7 +40,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       // All other files
       gulp.watch([
         path.join(dirs.temporary, '**/*'),
-        '!' + path.join(dirs.temporary, '**/*.{css,map,html,js}')
+        '!' + path.join(dirs.temporary, '**/*.{css,map,html}')
       ]).on('change', browserSync.reload);
     }
   });
